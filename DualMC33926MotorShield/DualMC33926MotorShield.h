@@ -20,6 +20,7 @@ class DualMC33926MotorShield
     unsigned int getM1CurrentMilliamps() const; // Get current reading for M1.
     unsigned int getM2CurrentMilliamps() const; // Get current reading for M2.
     unsigned char getFault() const; // Get fault reading.
+    void setEnabled(bool enabled);
     void clearFault(); // continue use after a fault
 
   private:

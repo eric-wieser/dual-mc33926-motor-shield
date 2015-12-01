@@ -129,11 +129,21 @@ unsigned char DualMC33926MotorShield::getFault() const
   return !digitalRead(_nSF);
 }
 
+void DualMC33926MotorShield::setEnabled(bool enabled)
+{
+  if(!enabled) {
+    digitalWrite(_nD2, LOW);
+    analogWrite(_M1PWM, 0);
+    analogWrite(_M2PWM, 0);
+  }
+  else {
+    digitalWrite(_nD2, HIGH);
+  }
+}
+
 void DualMC33926MotorShield::clearFault()
 {
-  digitalWrite(_nD2, LOW);
+  setEnabled(false);
   delay(10);
-  analogWrite(_M1PWM, 0);
-  analogWrite(_M2PWM, 0);
-  digitalWrite(_nD2, HIGH);
+  setEnabled(true);
 }
